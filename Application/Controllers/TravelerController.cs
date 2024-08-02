@@ -10,9 +10,9 @@ public class TravelerController : ControllerBase
 {
     private readonly ITravelerService _travelerService;
 
-    public TravelerController(ITravelerService weatherForecastService)
+    public TravelerController(ITravelerService travelerService)
     {
-        _travelerService = weatherForecastService;
+        _travelerService = travelerService;
     }
 
     [HttpGet("{id}")]
