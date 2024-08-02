@@ -22,7 +22,10 @@ public class Program
         builder.Services.AddScoped<ITravelerRepository, TravelerRepository>();
         builder.Services.Decorate<ITravelerRepository, CachedTravelerRepository>();
 
+        builder.Services.AddScoped<IHobbyRepository, HobbyRepository>();
+
         builder.Services.AddScoped<ITravelerService, TravelerService>();
+        builder.Services.AddScoped<IHobbyService, HobbyService>();
 
         var app = builder.Build();
 
