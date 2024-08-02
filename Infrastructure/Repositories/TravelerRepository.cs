@@ -1,6 +1,5 @@
 ﻿using cache_up.Domain.Entities;
 using cache_up.Domain.Interfaces;
-using Microsoft.Extensions.Caching.Memory;
 
 namespace cache_up.Infrastructure.Repositories;
 
@@ -18,36 +17,10 @@ public class TravelerRepository : ITravelerRepository
             new() { Id = 8, Name = "Vignesh"}
         ];
 
-    private readonly IMemoryCache _cache;
-
-    public TravelerRepository(IMemoryCache cache)
-    {
-        _cache = cache;
-    }
-
     public Traveler? GetById(int id)
     {
-        // Verify if the cache has value
-        if (!_cache.TryGetValue(id, out Traveler? traveler))
-        {
-            // Let's pretend the database is taking five seconds to respond
-            Task.Delay(TimeSpan.FromSeconds(5)).Wait();
-
-            // Get the traveler from the "database"
-            traveler = BankPower.FirstOrDefault(bp => bp.Id == id);
-
-            // Define the cache options
-            var cacheEntryOptions = new MemoryCacheEntryOptions()
-                .SetSlidingExpiration(TimeSpan.FromSeconds(5))
-                .SetAbsoluteExpiration(TimeSpan.FromSeconds(10));
-
-            // Store the cache
-            if (traveler != null)
-            {
-                _cache.Set(id, traveler, cacheEntryOptions);
-            }
-        }
-
-        return traveler;
+        // Let's pretend the database is taking five seconds to respond
+        Task.Delay(TimeSpan.FromSeconds(5)).Wait();
+        return BankPower.FirstOrDefault(bp => bp.Id.Equals(id));
     }
 }

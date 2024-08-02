@@ -1,5 +1,6 @@
 using cache_up.Domain.Interfaces;
 using cache_up.Domain.Services;
+using cache_up.Infrastructure.Cache;
 using cache_up.Infrastructure.Repositories;
 
 namespace cache_up;
@@ -19,6 +20,7 @@ public class Program
         builder.Services.AddSwaggerGen();
 
         builder.Services.AddScoped<ITravelerRepository, TravelerRepository>();
+        builder.Services.Decorate<ITravelerRepository, CachedTravelerRepository>();
 
         builder.Services.AddScoped<ITravelerService, TravelerService>();
 
