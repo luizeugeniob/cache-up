@@ -3,7 +3,7 @@ using cache_up.Domain.Interfaces;
 
 namespace cache_up.Infrastructure.Repositories;
 
-public class TravelerRepository : ITravelerRepository
+public class TravelerRepository : IRepository<Traveler>
 {
     private static readonly List<Traveler> BankPower =
         [

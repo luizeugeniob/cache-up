@@ -3,7 +3,7 @@ using cache_up.Domain.Interfaces;
 
 namespace cache_up.Infrastructure.Repositories;
 
-public class HobbyRepository : IHobbyRepository
+public class HobbyRepository : IRepository<Hobby>
 {
     private static readonly List<Hobby> Hobbies =
         [
