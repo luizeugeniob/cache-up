@@ -1,3 +1,4 @@
+using cache_up.Domain.Entities;
 using cache_up.Domain.Interfaces;
 using cache_up.Domain.Services;
 using cache_up.Infrastructure.Cache;
@@ -19,10 +20,11 @@ public class Program
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
 
-        builder.Services.AddScoped<ITravelerRepository, TravelerRepository>();
-        builder.Services.Decorate<ITravelerRepository, CachedTravelerRepository>();
+        builder.Services.AddScoped<IRepository<Traveler>, TravelerRepository>();
+        builder.Services.AddScoped<IRepository<Hobby>, HobbyRepository>();
 
-        builder.Services.AddScoped<IHobbyRepository, HobbyRepository>();
+        // Decorate all repositories
+        builder.Services.Decorate(typeof(IRepository<>), typeof(CachedRepository<>));
 
         builder.Services.AddScoped<ITravelerService, TravelerService>();
         builder.Services.AddScoped<IHobbyService, HobbyService>();

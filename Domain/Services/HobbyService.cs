@@ -5,9 +5,9 @@ namespace cache_up.Domain.Services;
 
 public class HobbyService : IHobbyService
 {
-    private readonly IHobbyRepository _hobbyRepository;
+    private readonly IRepository<Hobby> _hobbyRepository;
 
-    public HobbyService(IHobbyRepository hobbyRepository)
+    public HobbyService(IRepository<Hobby> hobbyRepository)
     {
         _hobbyRepository = hobbyRepository;
     }

@@ -5,9 +5,9 @@ namespace cache_up.Domain.Services;
 
 public class TravelerService : ITravelerService
 {
-    private readonly ITravelerRepository _travelerRepository;
+    private readonly IRepository<Traveler> _travelerRepository;
 
-    public TravelerService(ITravelerRepository travelerRepository)
+    public TravelerService(IRepository<Traveler> travelerRepository)
     {
         _travelerRepository = travelerRepository;
     }
