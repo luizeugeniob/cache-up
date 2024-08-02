@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace cache_up.Application.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("[controller]/")]
 public class TravelerController : ControllerBase
 {
     private readonly ITravelerService _travelerService;
@@ -15,7 +15,7 @@ public class TravelerController : ControllerBase
         _travelerService = weatherForecastService;
     }
 
-    [HttpGet("/{id}")]
+    [HttpGet("{id}")]
     public Traveler? GetById(int id)
     {
         return _travelerService.GetById(id);
